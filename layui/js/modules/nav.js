@@ -46,6 +46,7 @@ layui.define(['jquery', 'element'], function(exports){
                 const query = queryParse();
                 if (query.code) {
                     const code = query.code
+                    delete query.code
                     const replacedUrl = `${window.location.origin}${window.location.pathname}${queryStringify(query)}${window.location.hash}`
                     history.replaceState(null, null, replacedUrl)
                     options = assign(options, {
