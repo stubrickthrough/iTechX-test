@@ -64,7 +64,6 @@ layui.define(['jquery', 'element'], function(exports){
                             'Accept': 'application/json',
                         },
                         success: function (data) {
-                            data = queryParse(data);
                             console.log(data);
                             if (data && data.access_token) {
                                 window.localStorage.setItem('GT_ACCESS_TOKEN', data.access_token);
@@ -75,7 +74,6 @@ layui.define(['jquery', 'element'], function(exports){
                             if (callback) callback();
                         },
                         error: function(err) {
-                            err = queryParse(err);
                             console.log(err);
                             if (callback) callback();
                         }
