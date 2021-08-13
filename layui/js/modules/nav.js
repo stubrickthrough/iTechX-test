@@ -115,7 +115,7 @@ layui.define(['jquery', 'element'], function(exports){
                 const query = {
                     client_id: clientID,
                     redirect_uri: window.location.href,
-                    scope: 'public_repo,read:user,user:email'
+                    scope: 'public_repo'
                 };
                 return `${githubOauthUrl}?${queryStringify(query)}`;
             },
