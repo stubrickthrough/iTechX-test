@@ -14,11 +14,9 @@ layui.define(['jquery', 'element'], function(exports){
         };
 
         const queryStringify = query => {
-            var queryString = Object.keys(query)
+            const queryString = Object.keys(query)
               .map(key => `${key}=${encodeURIComponent(query[key] || '')}`)
               .join('&')
-            if (queryString != "") 
-                queryString = "?" + queryString;
             return queryString
         }
 
@@ -49,7 +47,7 @@ layui.define(['jquery', 'element'], function(exports){
                 if (query.code) {
                     const code = query.code
                     delete query.code
-                    const replacedUrl = `${window.location.origin}${window.location.pathname}${queryStringify(query)}${window.location.hash}`
+                    const replacedUrl = `${window.location.origin}${window.location.pathname}${(queryStringify(query) == "") ? "" : "?" + queryStringify(query)}${window.location.hash}`
                     history.replaceState(null, null, replacedUrl)
                     options = assign(options, {
                         url: replacedUrl,
