@@ -17,6 +17,8 @@ layui.define(['jquery', 'element'], function(exports){
             const queryString = Object.keys(query)
               .map(key => `${key}=${encodeURIComponent(query[key] || '')}`)
               .join('&')
+            if (queryString != "") 
+                queryString = "?" + queryString;
             return queryString
         }
 
