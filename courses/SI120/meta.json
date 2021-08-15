@@ -1,0 +1,20 @@
+{
+    "code": "SI120",
+    "name": "Discrete Mathematics",
+    "cover": "//i-techx.github.io/image/SI120_cover.jpg",
+    "semesters": {
+        "Spring2021": {
+            "teacher": [
+                "jiangjh"
+            ],
+            "ta": [
+                "qiaowh"
+            ],
+            "department": "信息科学与技术学院",
+            "credit": "4",
+            "hours": "64",
+            "prerequisite": "无",
+            "evaluation": "到课情况(小测验，上课点名抽查): 5% 课后作业: 35% 期中考试:30% 期末考试: 30%"
+        }
+    }
+}
