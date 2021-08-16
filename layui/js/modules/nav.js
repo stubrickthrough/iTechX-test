@@ -105,6 +105,39 @@ layui.define(['jquery', 'element'], function(exports){
                 })
             },
 
+            getCourseName: function(callback) {
+                const query = queryParse();
+                if (query.course_code) {
+                    $.ajax({
+                        url: options.baseURL + "/repos/" + options.owner + "/" + options.repo + "/contents/courses/" + query.course_code + "/meta.json",
+                        type: "GET",
+                        data: {
+                            'ref': 'file-base'
+                        },
+                        headers: {
+                            'Accept': 'application/json',
+                        },
+                        success: function (data) {
+                            if (data && data.content) {
+                                var string = window.atob(data.content.replace(/[\r\n]/g,""));
+                                var content = JSON.parse(string);
+                                navComponent.course_code = query.course_code;
+                                navComponent.course_name = content.name;
+                            } else {
+                                console.log('data error:', data);
+                            }
+                            if (callback) callback();
+                        },
+                        error: function(err) {
+                            console.log(err);
+                            if (callback) callback();
+                        }
+                    })
+                } else {
+                    if (callback) callback();
+                }
+            },
+
             config: function(options_) {
                 options = assign(options, options_);
             },
@@ -120,59 +153,21 @@ layui.define(['jquery', 'element'], function(exports){
                 return `${githubOauthUrl}?${queryStringify(query)}`;
             },
 
-            hello: function(str){
-                $.ajax({
-                    url: options.baseURL + "/repos/stubrickthrough/testAPI/contents",
-                    type: "GET",
-                    headers: {
-                        'Accept': 'application/json'
-                    },
-                    data: {
-                        'ref': 'gh-pages'
-                    },
-                    success: function (data) {
-                        console.log(data);
-                    }
-                })
-            },
-
-            prerender: function(container){
-                node = window.document.getElementById(container);
-                page = options.page;
-                tabs = "";
-
-                if (page == "dashboard") {
-                    tabs += '<li class="layui-nav-item layui-layout-right layui-this" style="position: relative; margin-right: 16em;"><a href="">课程面板</a></li>';
-                } else {
-                    tabs += '<li class="layui-nav-item layui-layout-right" style="position: relative; margin-right: 16em;"><a href="">课程面板</a></li>';
-                }
-
-                if (page == "help") {
-                    tabs += '<li class="layui-nav-item layui-layout-right layui-this" style="position: relative; margin-right: 10em;"><a href="help.html">帮助</a></li>';
-                } else {
-                    tabs += '<li class="layui-nav-item layui-layout-right" style="position: relative; margin-right: 10em;"><a href="help.html">帮助</a></li>';
-                }
-
-                tabs += '<li class="layui-nav-item layui-layout-right" style="position: relative; margin-right: 2em;">                \
-                    <a href="'+this.getLoginLink()+'">                                                                                \
-                        <img src="layui/images/github.svg" class="layui-nav-img">登录</a>                                                      \
-                </li>'
-
-                node.innerHTML = '<div class="layui-header">                                                                                                                        \
-                    <ul class="layui-nav" lay-filter="">                                                                                                                            \
-                        <a class="logo" href="">                                                                                                                                    \
-                            <img src="layui/images/iTechX.png" height="30px" style="position: relative; bottom: -15px; float: left; margin-right: 2%;" alt="iTechX">      \
-                        </a>                                                                                                                                                        \
-                        ' + tabs + ' \
-                    </ul>                                                                                                                                                           \
-                </div>';
-                element.render('nav');
-            },
-
             render_: function(container){
                 node = window.document.getElementById(container);
                 page = options.page;
                 tabs = "";
+
+                if (page == "course" && this.course_code && this.course_name) {
+                    tabs += '                                                                                                                                       \
+                        <li style="font-family:sans-serif; position:relative;display:inline-block;*display:inline;*zoom:1;vertical-align:middle;line-height:60px">   \
+                            <div>                                                                                                                             \
+                                <span style="color:#fff;">' + this.course_code + '</span>                                                                     \
+                                <span style="color:rgba(255,255,255,.7);">' + this.course_name + '</span>                                                   \
+                            </div>                                                                                                                                   \
+                        </li>                                                                                                                                        \
+                    '
+                }
 
                 if (page == "dashboard") {
                     tabs += '<li class="layui-nav-item layui-layout-right layui-this" style="position: relative; margin-right: 16em;"><a href="">课程面板</a></li>';
@@ -214,11 +209,13 @@ layui.define(['jquery', 'element'], function(exports){
             },
 
             render: function(container){
-                navComponent.prerender(container);
+                navComponent.render_(container);
                 navComponent.construct(function(){
                     navComponent.getUserInfo(function(){
-                        navComponent.render_(container);
-                    })
+                        navComponent.getCourseName(function(){
+                            navComponent.render_(container);
+                        });
+                    });
                 });
             }
         }
