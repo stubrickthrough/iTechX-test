@@ -286,7 +286,6 @@ layui.define(['jquery', 'util'], function(exports){
                     },
                     success: function (data) {
                         if (data) {
-                            console.log(data);
                             var contents = new Array();
                             for (var idx in data) {
                                 var file = data[idx];

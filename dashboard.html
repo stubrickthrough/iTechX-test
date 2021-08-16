@@ -54,15 +54,10 @@
 </div>
 
 <script src="layui/layui.js"></script>
-<script src="layui/nav.js"></script>
-<script>
-    var dash_board = new DashBoard();
-    dash_board.render();
-</script>
 <script>
     layui.config({
         base: 'layui/js/modules/'
-    }).use(['layer', 'element', 'nav'], function(){
+    }).use(['layer', 'element', 'nav', 'course_card'], function(){
         var nav = layui.nav({
             page: "dashboard",
             clientID: "55c417c86c93e9db8092",
@@ -70,6 +65,13 @@
         });
 
         nav.render("navigator");
+
+        var card = layui.course_card({
+            repo: 'iTechX-test',
+            owner: 'stubrickthrough',
+        });
+
+        card.render("course-cards");
     
     });
 </script> 
