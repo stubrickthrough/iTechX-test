@@ -5,7 +5,7 @@
     "semesters": [
         {
             "course_id": "SI120.01",
-            "semester": "Spring",
+            "season": "Spring",
             "year": "2021",
             "teacher": [
                 "jiangjh"
