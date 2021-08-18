@@ -2,8 +2,11 @@
     "code": "SI120",
     "name": "Discrete Mathematics",
     "cover": "//i-techx.github.io/image/SI120_cover.jpg",
-    "semesters": {
-        "Spring2021": {
+    "semesters": [
+        {
+            "course_id": "SI120.01",
+            "semester": "Spring",
+            "year": "2021",
             "teacher": [
                 "jiangjh"
             ],
@@ -16,5 +19,5 @@
             "prerequisite": "无",
             "evaluation": "到课情况(小测验，上课点名抽查): 5% 课后作业: 35% 期中考试:30% 期末考试: 30%"
         }
-    }
+    ]
 }
