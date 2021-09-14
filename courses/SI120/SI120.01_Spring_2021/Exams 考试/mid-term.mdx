@@ -1,0 +1,348 @@
+«««
+code: SI120
+name: Discrete Mathematics
+semester: Spring 2021
+category: Lecture Slides 教学课件
+title: Lecture Slides 教学课件
+»»»
+
+
+# Mid-term Exam 期中考试
+
+## Page 1 (question)
+
+@ Reading
+
+<h3 style="font-family: Quicksand; font-size: 20pt; margin: 0.5em 0;"><b>1 Multiple Choice (60 pts)</b></h3>
+<p style="font-family: Quicksand; font-size: medium; margin: 1em 0;">Every question has one correct answer.</p>
+
+@ problem - radio
+title: "Question 1"
+content: """
+Which of the following is not a proposition?
+"""
+choice: """
+There are no integers between $x$ and $x+1$.
+The moon is made of green cheese.
+$7 \cdot 11 \cdot 13 = 1001$.
+$e^{i\pi} + 1 = 0$.
+"""
+points: "3"
+answer: "A"
+
+@ problem - radio
+title: "Question 2"
+content: """
+Let $|$ be the binary logical connective defined by $p|q=\neg(p \land q)$. Which of the following is not true?
+"""
+choice: """
+$(p|q)|r \equiv p|(q|r)$
+$p | (q \lor r) \equiv (p|q) \land (p|r)$
+$\neg (p | q) \equiv p \land q$
+$p|q \equiv q|p$
+"""
+points: "3"
+answer: "A"
+
+@ problem - radio
+title: "Question 3"
+content: """
+Which of the following is not a tautology?
+"""
+choice: """
+$(\neg p \lor q) \land (q \rightarrow \neg r \land \neg p) \land (p \lor r)$
+$(p \leftrightarrow q) \leftrightarrow (\neg p \lor q) \land (p \lor \neg q)$
+$(q \rightarrow r) \land (p \rightarrow q) \rightarrow (p \rightarrow r)$
+$(p \lor q) \land (\neg p \lor r) \rightarrow (q \lor r) $
+"""
+points: "3"
+answer: "A"
+
+@ problem - radio
+title: "Question 4"
+content: """
+Let $a=$"A comes to the party.", $b=$"B comes to the party.", $c=$"C comes to the party.", $d=$"D comes to the party.". Which of the following is the correct translation of "A sufficient condition for A coming to the party is that,if B does not come, then at least one of C and D must come."?
+"""
+choice: """
+$(\neg b \rightarrow (c \lor d)) \rightarrow a$
+$(\neg b \rightarrow \neg (c \land d)) \rightarrow a$.
+$a \rightarrow (\neg b \rightarrow (c \lor d))$
+$a \leftrightarrow (\neg b \rightarrow \neg (c \land d))$.
+"""
+points: "3"
+answer: "A"
+
+@ problem - radio
+title: "Question 5"
+content: """
+Let $C(x)$ be the statement "$x$ has a cat," let $D(x)  $ be the statement "$x$ has a dog," and let $T(x)$ be the statement "$x$ is a student." Which of the following best describes $\exists x \left(T(x) \land \neg C(x) \land \neg D(x) \right)$? 
+"""
+choice: """
+Not every student has either a cat or a dog.
+There exists a student that he has a cat and a dog.
+Not every student has both a cat and a dog.
+There exists a student that he has either a cat or a dog.
+"""
+points: "3"
+answer: "A"
+
+@ problem - radio
+title: "Question 6"
+content: """
+The predicate formula $\exists x P(x) \rightarrow P(0)$ is
+"""
+choice: """
+satisfiable
+unsatisfiable
+logically valid
+none of the above
+"""
+points: "3"
+answer: "A"
+
+@ problem - radio
+title: "Question 7"
+content: """
+Which of the following is logically valid?
+"""
+choice: """
+$\forall x(P(x) \land Q(x)) \leftrightarrow \forall xP(x) \land \forall xQ(x)$
+$\forall x(P(x)\lor Q(x)) \leftrightarrow (\forall xP(x) \lor \forall xQ(x))$
+$\forall x(P(x)\to Q(x)) \leftrightarrow (\exists xP(x) \to \exists xQ(x))$
+$\forall x(P(x)\to Q(x)) \leftrightarrow (\forall xP(x) \to \forall xQ(x))$
+"""
+points: "3"
+answer: "A"
+
+@ problem - radio
+title: "Question 8"
+content: """
+Which of the following is not true?
+"""
+choice: """
+The sets $A, B$ have the same cardinality if and only if there is a bijection $f: A \rightarrow B$.
+A set is uncountable if its power set is uncountable.
+If $A, B$ are countably infinite, then so is $A \cup B$.
+If $A, B$ are countably infinite, then so is $A \times B$.
+"""
+points: "3"
+answer: "B"
+
+@ problem - radio
+title: "Question 9"
+content: """
+Which of the following is not true?
+"""
+choice: """
+Let $A$ be any set of sets. Then $\cup \mathcal{P} (A) = A$.
+Let $A$ be any set of sets. Then $\mathcal{P} (\cup A) = A$.
+Let $A=\{1\cdot a, 2 \cdot b, 3\cdot c, 100\cdot z\}, T=\{1\cdot b, 98\cdot z\}$. Then $T$ is a 99-subset of $A$.
+Let $A=\{1\cdot a, 2\cdot b, 3\cdot c\}$. Then the 3-permutations of $A$ is 19.
+"""
+points: "3"
+answer: "B"
+
+@ problem - radio
+title: "Question 10"
+content: """
+Which of the following sets has different cardinality comparing to others?
+"""
+choice: """
+The set $\mathbb{R}^+$ of positive real numbers.
+The set $\{(x, y): x,y\in\mathbb{R}, x^2+y^2=1 \}$.
+The set $\{(x, y): x,y\in\mathbb{R}, x^2+y^2<1 \}$.
+The set $\{S: S\subseteq \mathbb{Z}^+, |S|<\infty \}$.
+"""
+points: "3"
+answer: "D"
+
+@ problem - radio
+title: "Question 11"
+content: """
+According to the basic rules of counting, which of the following statement is not correct?
+"""
+choice: """
+The number of four-digit decimal odd number that each digit is different from each other is 2240.
+The number of the composite divisors of $N=3^{4}\times5^{6}\times7^8$ is 188.
+There are 12 0's at the end of decimal representation of $50!$.
+If there is an injection from set $A$ to set $B$, then we can say that $|A| \leqslant |B|$
+"""
+points: "3"
+answer: "B"
+
+@ problem - radio
+title: "Question 12"
+content: """
+Which of the following choices allows a T path from $A$ to $B$?
+"""
+choice: """
+$A = (2,1), B=(49,51)$ 
+$A = (2,1), B=(49,52)$
+$A = (1,2), B=(48,48)$
+$A = (1,2), B=(51,48)$
+"""
+points: "3"
+answer: "D"
+
+@ problem - radio
+title: "Question 13"
+content: """
+Let $\{a_n\}_{n=3}^{\infty}$ be a sequence such that $n(n-1)=\sum_{k=3}^{n}\left(\begin{array}{l}n \\ k\end{array}\right) a_{k}$. Then $a_6=$ __________.
+"""
+choice: """
+-10
+-20
+-30
+-40
+"""
+points: "3"
+answer: "C"
+
+@ problem - radio
+title: "Question 14"
+content: """
+The number of surjections from $\{1,2,3,4,5,6\}$ to $\{A,B,C\}$ is __________.
+"""
+choice: """
+510
+520
+530
+540
+"""
+points: "3"
+answer: "D"
+
+@ problem - radio
+title: "Question 15"
+content: """
+The number of ways of distributing 6 different books into 4 identical boxes such that at most one box is empty is __________.
+"""
+choice: """
+122
+133
+144 
+155
+"""
+points: "3"
+answer: "D"
+
+@ problem - radio
+title: "Question 16"
+content: """
+There are 21 identical seats in an meeting room. The number of ways of arranging them in three (different) rows, such that any two rows are majority of them (i.e. greater or equal than 11) is __________.
+"""
+choice: """
+36 
+45
+55
+66
+"""
+points: "3"
+answer: "C"
+
+@ problem - radio
+title: "Question 17"
+content: """
+Let $A = \{a: 1 \leqslant a \leqslant 1000, a\text{ is divisible by 3 and 5, but not divisible by 7}\}$. Then $|A|=$ __________.
+"""
+choice: """
+56
+57
+58
+59
+"""
+points: "3"
+answer: "B"
+
+@ problem - radio
+title: "Question 18"
+content: """
+Which of the following statement is not correct?
+"""
+choice: """
+Given 367 persons, at least two of them have same birthday.
+Given a sequence of distinct real numbers $\{a_1, a_2, \cdots, a_{50}\}$, the length of the longest strictly monotonous (strictly increasing or decreasing) subsequence is at least 9. (Example: $\{1,3\}$ is a strictly increasing subsequence of $\{1,4,3,2\}$)
+During a month with 30 days, a baseball team plays at least one game a day, but no more than 45 games. Then there must be a period of some number of consecutive days during which the team must play exactly 14 games.
+In order to connect 50 computers to 15 printers, such that any 15 computers are able to connect to all 15 printers, at least 540 cables are needed.
+"""
+points: "3"
+answer: "B"
+
+@ problem - radio
+title: "Question 19"
+content: """
+Which of the following could be a solution to the linear recurrence relation $a_n = 7a_{n-1}-15a_{n-2}+9a_{n-3} \quad (n \geq 3)$?
+"""
+choice: """
+$a_n = 2\cdot3^n+5$
+$a_n = (n^2+3)\cdot3^n$
+$a_n = 2\cdot3^n-n+1$
+$a_n = 5^n$
+"""
+points: "3"
+answer: "A"
+
+@ problem - radio
+title: "Question 20"
+content: """
+Let $a_n = 2n+2$ for every integer $n \geq 0$. The generating function of $\{a_n\}_{n=0}^{\infty}$ is __________.
+"""
+choice: """
+$\frac{1}{1-x}$
+$\frac{1}{(1-x)^2}$
+$\frac{2}{(1-x)^2}$
+$\frac{1}{2(1-x)^2}$
+"""
+points: "3"
+answer: "C"
+
+## Page 2 (question)
+
+@ Reading
+
+<h3 style="font-family: sans-serif; font-size: 16pt; margin: 0.5em 0;">Question 21 Logic (16 pt)</h3>
+<p style="font-family: sans-serif; font-size: small; color: rgb(172, 172, 172); margin: 1.3em 0;">0/16 point (ungraded)</p>
+<p style="font-family: sans-serif; font-size: medium; margin: 1em 0;">
+Let $P(x)=$"$x$ is a person", $H(x, y)=$"$x$ hates $y$" and $E(x, y)=$"$x=y$". Translate the following statements into formulas: <i>Only the final formula for each statements is needed.</i>
+</p>
+<p style="font-family: sans-serif; font-size: medium; margin: 1em 0;">
+(a) Every person hates some person.
+</p>
+<p style="font-family: sans-serif; font-size: medium; margin: 1em 0;">
+(b) Every person hates some other person.
+</p>
+<p style="font-family: sans-serif; font-size: medium; margin: 1em 0;">
+(c) There is a person who is hated by every person.
+</p>
+<p style="font-family: sans-serif; font-size: medium; margin: 1em 0;">
+(d) There is a person who is not hated by any other person.
+</p>
+
+<hr>
+<h3 style="font-family: sans-serif; font-size: 16pt; margin: 0.5em 0;">Question 22 All Disordered Permutation (10 pt)</h3>
+<p style="font-family: sans-serif; font-size: small; color: rgb(172, 172, 172); margin: 1.3em 0;">0/10 point (ungraded)</p>
+<p style="font-family: sans-serif; font-size: medium; margin: 1em 0;">
+Let $A_n = \{x_1x_2\cdots x_n: x_1x_2\cdots x_n$ is a permutation of $[n]$ and $x_i \ne i, \forall i \in [n]\}$. Determine $|A_n|$.
+</p>
+
+@ problem - text
+title: "Question 23 Generating Function Application (14 pt)"
+content: """
+For every integer $r \geq 1$, let $a_r$ be the number of elements in $A_r = \\{s:s \in \{0,1,2\}^r,$ s has even number (including 0) of 1s, odd number of 2s and no more than two 0s.$\\}$. Calculate $a_{14}$ with the generating function of $\{a_n\}_{n=0}^{\infty}$.
+"""
+points: "14"
+answer: "57344"
+
+## Page 3 (book)
+
+@ Reading
+
+<h3 style="font-family: Quicksand; font-size: 16pt; margin: 0.5em 0;">Download links</h3>
+
+<p style="font-family: Quicksand; font-size: medium; margin: 1em 0;">
+The exam paper: <a href="https://docs.zohopublic.com.cn/file/tdswa3a843900ff5540aa8670656ae7b3df1f">link</a>.
+</p>
+
+<p style="font-family: Quicksand; font-size: medium; margin: 1em 0;">
+The exam solution: <a href="https://docs.zohopublic.com.cn/file/tdswa14a8f3ff01a1402d807292973a4125e4">link</a>.
+</p>
