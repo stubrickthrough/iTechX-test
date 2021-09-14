@@ -96,8 +96,10 @@ layui.define(['jquery', 'util'], function(exports){
                                 var elem = JSON.parse(string);
 
                                 var semester_strings = new Array();
-                                for (e in elem.semesters)
-                                    semester_strings.push(e.slice(0,-4) + ' ' + e.slice(-4));
+                                for (idx in elem.semesters) {
+                                    const e = elem.semesters[idx];
+                                    semester_strings.push(e.season + ' ' + e.year);
+                                }
                                 
                                 var d = document.createElement('div');
                                 if (elem.hasOwnProperty("status") && elem.status == "activate"){

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>iTechX</title>
+
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <link rel="stylesheet" href="layui/css/style.css?v=1">
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "layui/hm.js";
+          var s = document.getElementsByTagName("script")[0]; 
+          s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+<body>
+
+<div id="navigator" class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <ul class="layui-nav" lay-filter="">
+            <a class="logo" href="dashboard.html">
+                <img src="//i-techx.github.io/image/iTechX.png" height="30px" style="position: relative; bottom: -15px; float: left; margin-right: 2%;" alt="iTechX">
+            </a>
+            <li style="font-family:sans-serif; position:relative;display:inline-block;*display:inline;*zoom:1;vertical-align:middle;line-height:60px">
+                <div class="layui-hide" id="courseHeader">
+                    <span style="color:#fff;">{{d.code}}</span>
+                    <span style="color:rgba(255,255,255,.7);">{{d.name}}</span>
+                </div>
+            </li>
+            <li class="layui-nav-item layui-layout-right" style="position: relative; margin-right: 8em;"><a href="dashboard.html">课程面板</a></li>
+            <li class="layui-nav-item layui-layout-right" style="position: relative; margin-right: 2em;"><a href="help.html">帮助</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="layui-fluid" style="margin: 2em 20px;">
+    <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+        <div class="layui-tab-content" style="height: auto;">
+            <div class="layui-tab-item layui-show">
+                <span class="layui-breadcrumb" lay-separator='<span class="icon fa fa-angle-right" aria-hidden="true"></span>'>
+                    <div class="layui-hide" id="breadcrumb">
+                        <a href="courses?course_code={{d.code}}">{{d.code}}</a>
+                        <a href="courses?course_code={{d.code}}">{{d.semester}}</a>
+                        <a href="courses?course_code={{d.code}}">{{d.category}}</a>
+                        <a><cite>{{d.title}}</cite></a>
+                    </div>
+                </span>
+                <hr>
+
+                <div id="content" style="text-align: center;"></div>
+
+                <div class="main-content" id="test-out" style="margin: 1em 5%;">
+                </div>
+
+                <div id="successor" style="text-align: center;"></div>
+
+            </div>
+        </div>
+
+        <div class="layui-footer">
+            <!-- 底部固定区域 -->
+            <p style="display:flex; justify-content: center;">© 2020-2021 iTechX - MIT license.</p>
+        </div>
+    </div>
+
+</div>
+
+<script src="layui/layui.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/showdown@1.9.1/dist/showdown.min.js"></script>
+<script src="layui/js/showdown/mdx-ext.js"></script>
+
+<script>
+    layui.config({
+        base: 'layui/js/modules/'
+    }).use(['form', 'jquery', 'gradeffect', 'nav'], function(){
+        var $ = layui.$,
+            form = layui.form;
+        
+        const queryParse = (search = window.location.search) => {
+            if (!search) return {}
+            const queryString = search[0] === '?' ? search.substring(1) : search
+            const query = {}
+            queryString
+              .split('&')
+              .forEach(queryStr => {
+                const [key, value] = queryStr.split('=')
+                /* istanbul ignore else */
+                if (key) query[decodeURIComponent(key)] = decodeURIComponent(value)
+              })
+          
+            return query
+        }
+
+        $.ajax({
+            url: queryParse()['url'],
+            type: "GET",
+            success: function (data) {
+                var s = data;
+                var converter = new showdown.Converter({metadata: true, tables: true, literalMidWordUnderscores: true, extensions: mdxext()});
+                ans = converter.makeHtml(s);
+                var metadata = converter.getMetadata();
+                var converter = new showdown.Converter({tables: true, literalMidWordUnderscores: true, extensions: mdext()});
+                ans = converter.makeHtml(ans);
+                document.getElementById('test-out').innerHTML=ans;
+
+                form.render();
+                var Grade = layui.gradeffect;
+                Grade.render(metadata);
+                document.title = 'iTechX | ' + metadata.title + ' ' + metadata.code + ' ' + metadata.name;
+
+                var nav = layui.nav({
+                    page: "course",
+                    owner: "stubrickthrough",
+                    repo: "iTechX-test",
+                    clientID: "55c417c86c93e9db8092",
+                    clientSecret: 'b507bc42babbaf9b958b304057a21b02b7c010bd',
+                });
+                nav.course_code = metadata.code;
+                nav.course_name = metadata.name;
+                nav.render("navigator");
+            },
+            error: function(err) {
+                console.log(err);
+            }
+        })
+    });
+</script>
+</body>
+</html>

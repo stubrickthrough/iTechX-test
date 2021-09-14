@@ -117,96 +117,95 @@ layui.define(['jquery', 'util'], function(exports){
                     <div class="layui-row"><div class="layui-col-sm9">                                    \
                 ';
 
-                for (const key in content.semesters) {
-                    if (Object.hasOwnProperty.call(content.semesters, key)) {
-                        const semester = content.semesters[key];
-                        cards += '                                                                          \
-                        <div class="menu" semester="' + key + '">                                           \
-                            <div class="layui-card">                                                        \
-                                <div class="layui-card-body">                                               \
-                                    <div class="layui-row" style="padding-top: 1em; padding-bottom: 1em;">  \
-                                        <div class="layui-col-md2">                                         \
-                                            <div class="semester">                                          \
-                                                <div class="semester_season">' + key.slice(0, -4) + '</div> \
-                                                <div class="semester_year">' + key.slice(-4) + '</div>      \
-                                            </div>                                                          \
-                                        </div>                                                              \
-                                        <div class="layui-col-md10">                                        \
-                                            <div style="margin: 5px 1em;">                                  \
-                                                <div class="layui-row" style="font-family: Quicksand;">     \
-                                                    <div class="layui-col-md4">                             \
-                                                        <div style="margin: 5px;">                          \
-                                                            <b>Instructor 教师：</b>                        \
-                                                        </div>                                              \
-                        ';
+                for (const idx in content.semesters) {
+                    const semester = content.semesters[idx];
+                    const key = semester.course_id + '_' + semester.season + '_' + semester.year;
+                    cards += '                                                                          \
+                    <div class="menu" semester="' + key + '">                                           \
+                        <div class="layui-card">                                                        \
+                            <div class="layui-card-body">                                               \
+                                <div class="layui-row" style="padding-top: 1em; padding-bottom: 1em;">  \
+                                    <div class="layui-col-md2">                                         \
+                                        <div class="semester">                                          \
+                                            <div class="semester_season">' + semester.season + '</div> \
+                                            <div class="semester_year">' + semester.year + '</div>      \
+                                        </div>                                                          \
+                                    </div>                                                              \
+                                    <div class="layui-col-md10">                                        \
+                                        <div style="margin: 5px 1em;">                                  \
+                                            <div class="layui-row" style="font-family: Quicksand;">     \
+                                                <div class="layui-col-md4">                             \
+                                                    <div style="margin: 5px;">                          \
+                                                        <b>Instructor 教师：</b>                        \
+                                                    </div>                                              \
+                    ';
 
-                        for (const pid in semester.teacher) {
-                            if (Object.hasOwnProperty.call(this.people, semester.teacher[pid])) {
-                                const pinfo = this.people[semester.teacher[pid]];
-                                cards += '                                          \
-                                <div class="instructor">                            \
-                                    <a href="javascript:;">                         \
-                                    <div><img src="' + (pinfo.image ? pinfo.image : "layui/images/teacher.jpg") + '" style="border-radius: 50%; width: 60px; height: 60px;"></div> \
-                                    <div>' + pinfo.name + '</div>                   \
-                                    </a>                                            \
-                                </div>                                              \
-                                ';
-                            }
+                    for (const pid in semester.teacher) {
+                        if (Object.hasOwnProperty.call(this.people, semester.teacher[pid])) {
+                            const pinfo = this.people[semester.teacher[pid]];
+                            cards += '                                          \
+                            <div class="instructor">                            \
+                                <a href="javascript:;">                         \
+                                <div><img src="' + (pinfo.image ? pinfo.image : "layui/images/teacher.jpg") + '" style="border-radius: 50%; width: 60px; height: 60px;"></div> \
+                                <div>' + pinfo.name + '</div>                   \
+                                </a>                                            \
+                            </div>                                              \
+                            ';
                         }
-                        
-                        cards += '                                  \
-                            </div>                                  \
-                            <div class="layui-col-md8">             \
-                            <div style="margin: 5px;">              \
-                                <b>Teaching Assistant 助教：</b>    \
-                            </div>                                  \
-                        ';
-
-                        for (const pid in semester.ta) {
-                            if (Object.hasOwnProperty.call(this.people, semester.ta[pid])) {
-                                const pinfo = this.people[semester.ta[pid]];
-                                cards += '                                          \
-                                <div class="instructor">                            \
-                                    <a href="javascript:;">                         \
-                                    <div><img src="' + (pinfo.image ? pinfo.image : "layui/images/teacher.jpg") + '" style="border-radius: 50%; width: 60px; height: 60px;"></div> \
-                                    <div>' + pinfo.name + '</div>                   \
-                                    </a>                                            \
-                                </div>                                              \
-                                ';
-                            }
-                        }
-                                                    
-                        cards += '                                                                                          \
-                                                    </div>                                                                  \
-                                                    <div class="layui-col-md12" style="margin: 0.5em 0;"></div>             \
-                                                    <div class="layui-col-md6">                                             \
-                                                        <b>开课单位：</b>' + semester.department + '                                     \
-                                                    </div>                                                                   \
-                                                    <div class="layui-col-md6">                                             \
-                                                        <b>学分：</b>' + semester.credit + '                                                      \
-                                                    </div>                                                                  \
-                                                    <div class="layui-col-md6">                                              \
-                                                        <b>学时：</b>' + semester.hours + '                                                     \
-                                                    </div>                                                                  \
-                                                    <div class="layui-col-md6">                                             \
-                                                        <b>先修课程：</b>' + semester.prerequisite + '                                                   \
-                                                    </div>                                                                  \
-                                                    <div class="layui-col-md12">                                            \
-                                                        <b>评分标准：</b>' + semester.evaluation + '                                                   \
-                                                    </div>                                                                  \
-                                                </div>                                                                      \
-                                                <div class="layui-row" style="padding-top: 1em;">                           \
-                                                    <a href="javascript:;" class="layui-btn layui-btn-lg layui-btn-violet layui-btn-disabled" style="font-weight: normal; float: right;">查看主页</a>    \
-                                                </div>                                                                      \
-                                            </div>                                                                          \
-                                        </div>                                                                              \
-                                    </div>                                                                                  \
-                                </div>                                                                                      \
-                            </div>                                                                                          \
-                        ';
-                                                    
-                        cards += '</div>';
                     }
+                    
+                    cards += '                                  \
+                        </div>                                  \
+                        <div class="layui-col-md8">             \
+                        <div style="margin: 5px;">              \
+                            <b>Teaching Assistant 助教：</b>    \
+                        </div>                                  \
+                    ';
+
+                    for (const pid in semester.ta) {
+                        if (Object.hasOwnProperty.call(this.people, semester.ta[pid])) {
+                            const pinfo = this.people[semester.ta[pid]];
+                            cards += '                                          \
+                            <div class="instructor">                            \
+                                <a href="javascript:;">                         \
+                                <div><img src="' + (pinfo.image ? pinfo.image : "layui/images/teacher.jpg") + '" style="border-radius: 50%; width: 60px; height: 60px;"></div> \
+                                <div>' + pinfo.name + '</div>                   \
+                                </a>                                            \
+                            </div>                                              \
+                            ';
+                        }
+                    }
+                                                
+                    cards += '                                                                                          \
+                                                </div>                                                                  \
+                                                <div class="layui-col-md12" style="margin: 0.5em 0;"></div>             \
+                                                <div class="layui-col-md6">                                             \
+                                                    <b>开课单位：</b>' + semester.department + '                                     \
+                                                </div>                                                                   \
+                                                <div class="layui-col-md6">                                             \
+                                                    <b>学分：</b>' + semester.credit + '                                                      \
+                                                </div>                                                                  \
+                                                <div class="layui-col-md6">                                              \
+                                                    <b>学时：</b>' + semester.hours + '                                                     \
+                                                </div>                                                                  \
+                                                <div class="layui-col-md6">                                             \
+                                                    <b>先修课程：</b>' + semester.prerequisite + '                                                   \
+                                                </div>                                                                  \
+                                                <div class="layui-col-md12">                                            \
+                                                    <b>评分标准：</b>' + semester.evaluation + '                                                   \
+                                                </div>                                                                  \
+                                            </div>                                                                      \
+                                            <div class="layui-row" style="padding-top: 1em;">                           \
+                                                <a href="javascript:;" class="layui-btn layui-btn-lg layui-btn-violet layui-btn-disabled" style="font-weight: normal; float: right;">查看主页</a>    \
+                                            </div>                                                                      \
+                                        </div>                                                                          \
+                                    </div>                                                                              \
+                                </div>                                                                                  \
+                            </div>                                                                                      \
+                        </div>                                                                                          \
+                    ';
+                                                
+                    cards += '</div>';
                 }
 
                 cards += '                                                                                                                  \

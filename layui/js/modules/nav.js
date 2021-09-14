@@ -170,15 +170,15 @@ layui.define(['jquery', 'element'], function(exports){
                 }
 
                 if (page == "dashboard") {
-                    tabs += '<li class="layui-nav-item layui-layout-right layui-this" style="position: relative; margin-right: 16em;"><a href="">课程面板</a></li>';
+                    tabs += '<li class="layui-nav-item layui-layout-right layui-this" style="position: relative; margin-right: 16em;"><a href="dashboard">课程面板</a></li>';
                 } else {
-                    tabs += '<li class="layui-nav-item layui-layout-right" style="position: relative; margin-right: 16em;"><a href="">课程面板</a></li>';
+                    tabs += '<li class="layui-nav-item layui-layout-right" style="position: relative; margin-right: 16em;"><a href="dashboard">课程面板</a></li>';
                 }
 
                 if (page == "help") {
-                    tabs += '<li class="layui-nav-item layui-layout-right layui-this" style="position: relative; margin-right: 10em;"><a href="help.html">帮助</a></li>';
+                    tabs += '<li class="layui-nav-item layui-layout-right layui-this" style="position: relative; margin-right: 10em;"><a href="help">帮助</a></li>';
                 } else {
-                    tabs += '<li class="layui-nav-item layui-layout-right" style="position: relative; margin-right: 10em;"><a href="help.html">帮助</a></li>';
+                    tabs += '<li class="layui-nav-item layui-layout-right" style="position: relative; margin-right: 10em;"><a href="help">帮助</a></li>';
                 }
 
                 if (this.userInfo) {
