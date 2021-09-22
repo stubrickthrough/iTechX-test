@@ -276,6 +276,14 @@ layui.define(['jquery', 'util'], function(exports){
                 })
             },
 
+            preprocessURL: function(url) {
+                if (url.endsWith(".md") || url.endsWith(".mdx") || url.endsWith(".htmlx")) {
+                    return "reader?url="+ options.proxy + url;
+                } else {
+                    return options.proxy + url;
+                }
+            },
+
             loadFiles: function(element, path) {
                 $.ajax({
                     url: path,
@@ -285,16 +293,33 @@ layui.define(['jquery', 'util'], function(exports){
                     },
                     success: function (data) {
                         if (data) {
-                            var contents = new Array();
+                            var normal_contents = new Array();
+                            var reader_contents = new Array();
                             for (var idx in data) {
                                 var file = data[idx];
                                 if (file.type == "file") {
-                                    contents.push('                                             \
-                                    <a href="' + options.proxy + file.download_url + '">' + file.name + '</a>   \
-                                    ');
+                                    var url = file.download_url;
+
+                                    if (url.endsWith(".md") || url.endsWith(".mdx") || url.endsWith(".htmlx")) {
+                                        url = "reader?url="+ options.proxy + url;
+                                        reader_contents.push('                        \
+                                        <a href="' + url + '">' + file.name + '</a>   \
+                                        ');
+                                    } else {
+                                        url = options.proxy + url;
+                                        normal_contents.push('                        \
+                                        <a href=&quot;' + url + '&quot;>' + file.name + '</a>   \
+                                        ');
+                                    }
                                 }
                             }
-                            element.children[1].children[0].innerHTML = contents.join("<hr>");
+                            if (normal_contents.length > 0) {
+                                var message = "javascript:layui.use('layer', function(){  var layer = layui.layer;  layer.open({area: '50%', title: '文件信息',content: '"+ normal_contents.join("<hr>") +"'}); });"
+                                reader_contents.push('                        \
+                                <a href="'+message+'">浏览文件...</a>   \
+                                ');
+                            }
+                            element.children[1].children[0].innerHTML = reader_contents.join("<hr>");
                         } else {
                             console.log('data error:', data);
                             element.children[1].children[0].innerHTML = "Loading failed. Please try again.";
@@ -308,9 +333,14 @@ layui.define(['jquery', 'util'], function(exports){
             },
 
             render: function(container){
+                var index = layer.load(2, {
+                    content:"<p style='position: relative; left: -10px;'><br><br>Loading...</p>",
+                    shade:0
+                });
                 cardComponent.construct(function(){
                     cardComponent.getPeople(function(){
                         cardComponent.render_(container);
+                        layer.close(index);
                     })
                 });
             }

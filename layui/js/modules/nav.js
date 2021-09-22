@@ -1,7 +1,8 @@
-layui.define(['jquery', 'element'], function(exports){
+layui.define(['jquery', 'element', 'layer'], function(exports){
 
     var $ = layui.jquery,
-        element = layui.element;
+        element = layui.element,
+        layer = layui.layer;
 
     var nav = (function(options){
         var assign = function(defaultValue, value){
@@ -87,7 +88,7 @@ layui.define(['jquery', 'element'], function(exports){
 
             getUserInfo: function (callback) {
                 accessToken = options.accessToken || window.localStorage.getItem('GT_ACCESS_TOKEN');
-                if (!accessToken) return;
+                if (!accessToken) {if (callback) callback();return;};
                 $.ajax({
                     url: options.baseURL + "/user",
                     type: "GET",
@@ -187,6 +188,7 @@ layui.define(['jquery', 'element'], function(exports){
                         <a href="javascript:;"><img src="'+this.userInfo.avatar_url+'" class="layui-nav-img"></a>                  \
                         <dl class="layui-nav-child" style="left:auto; right:0; text-align:center;">                                                    \
                             <dd><a href="'+this.userInfo.html_url+'">'+this.userInfo.login+'</a></dd>                                    \
+                            <dd><a href="upload">上传</a></dd>\
                             <dd><a href="javascript:window.localStorage.removeItem(\'GT_ACCESS_TOKEN\');window.location.reload();">退出</a></dd>                                    \
                         </dl>                                                                           \
                     </li>'
@@ -199,7 +201,7 @@ layui.define(['jquery', 'element'], function(exports){
 
                 node.innerHTML = '<div class="layui-header">                                                                                                                        \
                     <ul class="layui-nav" lay-filter="">                                                                                                                            \
-                        <a class="logo" href="">                                                                                                                                    \
+                        <a class="logo" href="dashboard">                                                                                                                                    \
                             <img src="layui/images/iTechX.png" height="30px" style="position: relative; bottom: -15px; float: left; margin-right: 2%;" alt="iTechX">      \
                         </a>                                                                                                                                                        \
                         ' + tabs + ' \
@@ -208,12 +210,13 @@ layui.define(['jquery', 'element'], function(exports){
                 element.render('nav');
             },
 
-            render: function(container){
+            render: function(container, callback){
                 navComponent.render_(container);
                 navComponent.construct(function(){
                     navComponent.getUserInfo(function(){
                         navComponent.getCourseName(function(){
                             navComponent.render_(container);
+                            if (callback) callback();
                         });
                     });
                 });

@@ -6,7 +6,8 @@
     <title>iTechX</title>
 
     <link rel="stylesheet" href="layui/css/layui.css">
-    <link rel="stylesheet" href="layui/css/style.css?v=1">
+    <link rel="stylesheet" href="layui/css/style.css">
+    <link rel="stylesheet" href="layui/css/github-markdown.css">
     
     <script>
         var _hmt = _hmt || [];
@@ -77,7 +78,7 @@
 <script>
     layui.config({
         base: 'layui/js/modules/'
-    }).use(['form', 'jquery', 'gradeffect', 'nav'], function(){
+    }).use(['form', 'jquery', 'laytpl', 'gradeffect', 'nav'], function(){
         var $ = layui.$,
             form = layui.form;
         
@@ -101,16 +102,56 @@
             type: "GET",
             success: function (data) {
                 var s = data;
-                var converter = new showdown.Converter({metadata: true, tables: true, literalMidWordUnderscores: true, extensions: mdxext()});
-                ans = converter.makeHtml(s);
-                var metadata = converter.getMetadata();
-                var converter = new showdown.Converter({tables: true, literalMidWordUnderscores: true, extensions: mdext()});
-                ans = converter.makeHtml(ans);
-                document.getElementById('test-out').innerHTML=ans;
+                var metadata = "";
 
-                form.render();
-                var Grade = layui.gradeffect;
-                Grade.render(metadata);
+                if (queryParse()['url'].endsWith('.mdx')) {
+                    var converter = new showdown.Converter({metadata: true, tables: true, literalMidWordUnderscores: true, extensions: mdxext()});
+                    ans = converter.makeHtml(s);
+                    metadata = converter.getMetadata();
+                    var converter = new showdown.Converter({tables: true, literalMidWordUnderscores: true, extensions: mdext()});
+                    ans = converter.makeHtml(ans);
+                    document.getElementById('test-out').innerHTML=ans;
+
+                    form.render();
+                    var Grade = layui.gradeffect;
+                    Grade.render(metadata);
+                } else if (queryParse()['url'].endsWith('.htmlx'))  {
+                    var converter = new showdown.Converter({metadata: true, tables: true, literalMidWordUnderscores: true, extensions: mdext()});
+                    ans = converter.makeHtml(s);
+                    metadata = converter.getMetadata();
+                    document.getElementById('test-out').innerHTML=ans;
+
+                    form.render();
+                    var Grade = layui.gradeffect;
+                    Grade.render(metadata);
+                } else if (queryParse()['url'].endsWith('.md'))  {
+                    var converter = new showdown.Converter({metadata: true, tables: true, literalMidWordUnderscores: true, extensions: mdext()});
+                    ans = converter.makeHtml(s);
+                    metadata = converter.getMetadata();
+                    ans = '<div class="markdown-body">' + ans + '</div>'
+                    document.getElementById('test-out').innerHTML=ans;
+
+                    var laytpl = layui.laytpl;
+                    var breadcrumbTpl = lay('#breadcrumb')[0].innerHTML;
+                    lay('#breadcrumb').html(layui.laytpl(breadcrumbTpl).render(metadata))
+                    .removeClass('layui-hide');
+                } else if (queryParse()['url'].endsWith('.raw'))  {
+                    var converter = new showdown.Converter({metadata: true, tables: true, literalMidWordUnderscores: true, extensions: mdext()});
+                    ans = converter.makeHtml(s);
+                    metadata = converter.getMetadata();
+                    document.getElementById('test-out').innerHTML=ans;
+                } else {
+                    var converter = new showdown.Converter({metadata: true, tables: true, literalMidWordUnderscores: true, extensions: mdext()});
+                    ans = converter.makeHtml(s);
+                    metadata = converter.getMetadata();
+                    document.getElementById('test-out').innerHTML=ans;
+
+                    var laytpl = layui.laytpl;
+                    var breadcrumbTpl = lay('#breadcrumb')[0].innerHTML;
+                    lay('#breadcrumb').html(layui.laytpl(breadcrumbTpl).render(metadata))
+                    .removeClass('layui-hide');
+                }
+
                 document.title = 'iTechX | ' + metadata.title + ' ' + metadata.code + ' ' + metadata.name;
 
                 var nav = layui.nav({
