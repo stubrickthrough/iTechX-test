@@ -135,7 +135,7 @@ layui.define(['jquery', 'util'], function(exports){
                     const semester = content.semesters[idx];
                     const key = semester.course_id + '_' + semester.season + '_' + semester.year;
                     cards += '                                                                          \
-                    <div class="menu" semester="' + key + '">                                           \
+                    <div class="menu" semester="' + key + '" style="margin-bottom:1.5em;">                                           \
                         <div class="layui-card">                                                        \
                             <div class="layui-card-body">                                               \
                                 <div class="layui-row" style="padding-top: 1em; padding-bottom: 1em;">  \
