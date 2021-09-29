@@ -213,7 +213,12 @@ layui.define(['jquery', 'util'], function(exports){
                                                 </div>                                                                  \
                                             </div>                                                                      \
                                             <div class="layui-row" style="padding-top: 1em;">                           \
-                                                <a href="javascript:;" class="layui-btn layui-btn-lg layui-btn-violet layui-btn-disabled" style="font-weight: normal; float: right;">查看主页</a>    \
+                                                ';
+                                            if (semester.mainpage)
+                                                cards += '<a href="'+semester.mainpage+'" class="layui-btn layui-btn-lg layui-btn-violet" style="font-weight: normal; float: right;">查看主页</a>';
+                                            else
+                                                cards += '<a href="javascript:;" class="layui-btn layui-btn-lg layui-btn-violet layui-btn-disabled" style="font-weight: normal; float: right;">查看主页</a>';
+                                            cards += '\
                                             </div>                                                                      \
                                         </div>                                                                          \
                                     </div>                                                                              \
