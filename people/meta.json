@@ -2,18 +2,22 @@
     "jiangjh": {
         "name": "姜嘉骅",
         "image": "https://sist.shanghaitech.edu.cn/_upload/article/images/23/c5/a310e3a842409935996841356447/21258681-0200-4748-9a25-0f55fe076dee_s.jpg",
-        "teach-courses": {
-            "SI120": [
-                "Spring2021"
-            ]
-        }
+        "info": [
+            ["envelope", "zhoual@shanghaitech.edu.cn", "mailto:zhoual@shanghaitech.edu.cn"],
+            ["home", "Home Page", "https://sist.shanghaitech.edu.cn/2020/0707/c7499a58298/page.htm"]
+        ],
+        "teach-courses": [
+            ["Spring", "2021", "SI120", "Discrete Mathematics"],
+            ["Spring", "2020", "SI120", "Discrete Mathematics"]
+        ],
+        "ta-courses": [
+            ["Spring", "2019", "EE251", "Statistical Detection, Estimation, and Learning"]
+        ]
     },
     "qiaowh": {
         "name": "乔文汇",
-        "ta-courses": {
-            "SI120": [
-                "Spring2021"
-            ]
-        }
+        "ta-courses": [
+            ["Spring", "2021", "SI120", "Discrete Mathematics"]
+        ]
     }
 }
