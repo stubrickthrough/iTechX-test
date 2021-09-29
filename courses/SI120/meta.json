@@ -7,6 +7,24 @@
             "course_id": "SI120.01",
             "season": "Spring",
             "year": "2021",
+            "mainpage": "https://i-techx.github.io/SI120/Spring%202021/schedule.html",
+            "teacher": [
+                "jiangjh"
+            ],
+            "ta": [
+                "qiaowh"
+            ],
+            "department": "信息科学与技术学院",
+            "credit": "4",
+            "hours": "64",
+            "prerequisite": "无",
+            "evaluation": "到课情况(小测验，上课点名抽查): 5% 课后作业: 35% 期中考试:30% 期末考试: 30%"
+        },
+        {
+            "course_id": "SI120.01",
+            "season": "Spring",
+            "year": "2020",
+            "mainpage": "https://stubrickthrough.github.io/iTechX-test/reader?url=https://ghproxy.com/https://raw.githubusercontent.com/stubrickthrough/iTechX-test/file-base/courses/SI120/SI120.01_Spring_2021/Exams%20%E8%80%83%E8%AF%95/test.md",
             "teacher": [
                 "jiangjh"
             ],
