@@ -24,8 +24,8 @@
 <div id="navigator" class="layui-layout layui-layout-admin">
     <div class="layui-header">
         <ul class="layui-nav" lay-filter="">
-            <a class="logo" href="dashboard.html">
-                <img src="//i-techx.github.io/image/iTechX.png" height="30px" style="position: relative; bottom: -15px; float: left; margin-right: 2%;" alt="iTechX">
+            <a class="logo" href="dashboard">
+                <img src="" height="30px" style="position: relative; bottom: -15px; float: left; margin-right: 2%;" alt="iTechX">
             </a>
             <li style="font-family:sans-serif; position:relative;display:inline-block;*display:inline;*zoom:1;vertical-align:middle;line-height:60px">
                 <div class="layui-hide" id="courseHeader">
@@ -33,8 +33,8 @@
                     <span style="color:rgba(255,255,255,.7);">{{d.name}}</span>
                 </div>
             </li>
-            <li class="layui-nav-item layui-layout-right" style="position: relative; margin-right: 8em;"><a href="dashboard.html">课程面板</a></li>
-            <li class="layui-nav-item layui-layout-right" style="position: relative; margin-right: 2em;"><a href="help.html">帮助</a></li>
+            <li class="layui-nav-item layui-layout-right" style="position: relative; margin-right: 8em;"><a href="dashboard">课程面板</a></li>
+            <li class="layui-nav-item layui-layout-right" style="position: relative; margin-right: 2em;"><a href="help">帮助</a></li>
         </ul>
     </div>
 </div>
@@ -83,9 +83,10 @@
 <script>
     layui.config({
         base: 'layui/js/modules/'
-    }).use(['form', 'jquery', 'laytpl', 'gradeffect', 'nav'], function(){
+    }).use(['form', 'jquery', 'laytpl', 'gradeffect', 'nav', 'layer'], function(){
         var $ = layui.$,
-            form = layui.form;
+            form = layui.form,
+            layer = layui.layer;
         
         const queryParse = (search = window.location.search) => {
             if (!search) return {}
@@ -102,12 +103,18 @@
             return query
         }
 
+        var index = layer.load(2, {
+            content:"<p style='position: relative; left: -10px;'><br><br>Loading...</p>",
+            shade:0
+        });
+
         $.ajax({
             url: queryParse()['url'],
             type: "GET",
             success: function (data) {
                 var s = data;
                 var metadata = "";
+                layer.close(index);
 
                 if (queryParse()['url'].endsWith('.mdx')) {
                     var converter = new showdown.Converter({metadata: true, tables: true, literalMidWordUnderscores: true, extensions: mdxext()});
@@ -180,6 +187,7 @@
                     clientSecret: 'b507bc42babbaf9b958b304057a21b02b7c010bd',
                 });
                 nav.render("navigator");
+                layer.close(index);
                 document.getElementById('test-out').innerHTML='<div style="text-align: center;">\
                     <h1 style="text-align: center; font-size: 5em; line-height: 1.3em; margin: 5rem 0 3rem 0; padding: 0; text-shadow: 0 0 1rem #fefefe; font-family: Quicksand, Arial; color: #b4b4b4;">Page not found...</h1>\
                     <div style="position: relative;width: 200px;height: 200px; margin:auto;">\
